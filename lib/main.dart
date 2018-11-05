@@ -74,14 +74,26 @@ class NestedScrollViewWidget extends StatelessWidget {
                 ),
                 new SliverPadding(
                   padding: const EdgeInsets.symmetric(
-                    vertical: 1.0,
-                    horizontal: 1.0,
+                    vertical: 10.0,
+                    horizontal: 10.0,
                   ),
                   sliver: new SliverFixedExtentList(
                     delegate: new SliverChildBuilderDelegate(
-                        (BuildContext context, int index) {
-                      return new Text('aaa');
-                    }, childCount: 10),
+                      (BuildContext context, int index) {
+                        return new ListTile(
+                          leading: new Icon(Icons.person),
+                          title: new Text('aaaaaaaaa'),
+                          trailing: new Icon(Icons.keyboard_arrow_right),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                          ),
+                          onTap: () {
+                            print(11);
+                          },
+                        );
+                      },
+                      childCount: 8,
+                    ),
                     itemExtent: 60,
                   ),
                 ),
