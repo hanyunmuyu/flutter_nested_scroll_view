@@ -26,7 +26,8 @@ class NestedScrollViewWidget extends StatelessWidget {
             new SliverOverlapAbsorber(
               handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
               child: new SliverAppBar(
-                leading: new Icon(Icons.keyboard_arrow_left),
+                pinned: false,
+                leading: new Icon(Icons.arrow_back),
                 backgroundColor: Colors.white,
                 expandedHeight: 300.0,
                 forceElevated: innerBoxIsScrolled,
@@ -64,39 +65,28 @@ class NestedScrollViewWidget extends StatelessWidget {
           ];
         },
         body: new SafeArea(
+          top: false,
+          bottom: false,
           child: new Builder(builder: (BuildContext context) {
             return new CustomScrollView(
-              primary: true,
               slivers: <Widget>[
                 new SliverOverlapInjector(
                   handle:
-                      NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                  NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                 ),
                 new SliverPadding(
                   padding: const EdgeInsets.symmetric(
-                    vertical: 10.0,
-                    horizontal: 10.0,
+                    vertical: 8.0,
+                    horizontal: 16.0,
                   ),
                   sliver: new SliverFixedExtentList(
                     delegate: new SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                        return new ListTile(
-                          leading: new Icon(Icons.person),
-                          title: new Text('aaaaaaaaa'),
-                          trailing: new Icon(Icons.keyboard_arrow_right),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16.0,
-                          ),
-                          onTap: () {
-                            print(11);
-                          },
-                        );
-                      },
-                      childCount: 8,
-                    ),
+                            (BuildContext context, int index) {
+                          return new Text('$index');
+                        }, childCount: 20),
                     itemExtent: 60,
                   ),
-                ),
+                )
               ],
             );
           }),
