@@ -9,14 +9,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
-        // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: new NestedScrollViewWidget(),
@@ -34,10 +26,9 @@ class NestedScrollViewWidget extends StatelessWidget {
             new SliverOverlapAbsorber(
               handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
               child: new SliverAppBar(
-                centerTitle: true,
-                pinned: true,
-                backgroundColor: Colors.transparent,
-                expandedHeight: 240.0,
+                leading: new Icon(Icons.keyboard_arrow_left),
+                backgroundColor: Colors.white,
+                expandedHeight: 300.0,
                 forceElevated: innerBoxIsScrolled,
                 flexibleSpace: new Container(
                   child: new Column(
@@ -55,24 +46,27 @@ class NestedScrollViewWidget extends StatelessWidget {
                           ),
                           width: double.infinity,
                           height: 200.0,
+                          margin: const EdgeInsets.only(bottom: 40.0),
                         ),
                       ),
                     ],
                   ),
                 ),
                 bottom: PreferredSize(
-                  child: new Text('aaa'),
-                  preferredSize: new Size(double.infinity, 20.0),
+                  child: new CircleAvatar(
+                    radius: 40.0,
+                    backgroundImage: new AssetImage('images/mm.jpg'),
+                  ),
+                  preferredSize: new Size(double.infinity, 80.0),
                 ),
               ),
             ),
           ];
         },
         body: new SafeArea(
-          top: false,
-          bottom: false,
           child: new Builder(builder: (BuildContext context) {
             return new CustomScrollView(
+              primary: true,
               slivers: <Widget>[
                 new SliverOverlapInjector(
                   handle:
@@ -80,17 +74,17 @@ class NestedScrollViewWidget extends StatelessWidget {
                 ),
                 new SliverPadding(
                   padding: const EdgeInsets.symmetric(
-                    vertical: 8.0,
-                    horizontal: 16.0,
+                    vertical: 1.0,
+                    horizontal: 1.0,
                   ),
                   sliver: new SliverFixedExtentList(
                     delegate: new SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
                       return new Text('aaa');
-                    }, childCount: 20),
+                    }, childCount: 10),
                     itemExtent: 60,
                   ),
-                )
+                ),
               ],
             );
           }),
